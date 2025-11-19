@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CargoX - Platforma automatizata de transport. Algoritmul SmartMatch™ conecteaza expeditorii cu transportatorii in secunde. Inscrie-te pe lista de lansare.">
+    <title>CargoX | Potrivire automata de marfa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+    <header class="site-header">
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Deschide meniul" aria-pressed="false">
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+            <span class="menu-bar"></span>
+        </button>
+        <a href="#top" class="logo" data-scroll-target="body">Cargo<span>X</span></a>
+    </header>
+
+    <nav class="side-menu" id="side-menu" aria-hidden="true">
+        <div class="side-menu-header">
+            <a href="#top" class="logo" data-scroll-target="body">Cargo<span>X</span></a>
+            <button class="menu-close" id="menu-close" aria-label="Inchide meniul">×</button>
+        </div>
+        <ul>
+            <li><a href="#top" data-scroll-target="#top">Inscrie-te</a></li>
+            <li><a href="#how-it-works" data-scroll-target="#how-it-works">Cum functioneaza</a></li>
+            <li><a href="#benefits" data-scroll-target="#benefits">Beneficii</a></li>
+            <li><a href="#contact" data-scroll-target="footer">Contact</a></li>
+        </ul>
+        <div class="side-menu-footer">
+            <span class="side-menu-footer-label">Tema</span>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Comuta pe modul intunecat" aria-pressed="false">
+                <span class="theme-icon theme-icon--light" aria-hidden="true">☀︎</span>
+                <span class="theme-icon theme-icon--dark" aria-hidden="true">☾</span>
+            </button>
+        </div>
+    </nav>
+    <div class="menu-overlay" id="menu-overlay" aria-hidden="true"></div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero" id="top">
+            <div class="hero-container">
+                <div class="hero-copy reveal-on-scroll">
+                    <div class="hero-badge">
+                        <span>🚀 Lansare in curand</span>
+                        <span>Beneficii fondatori</span>
+                    </div>
+                    <div>
+                        <h1 class="delay-100 reveal-on-scroll">Fii primul care foloseste CargoX.</h1>
+                    </div>
+                    <p class="hero-lead delay-200 reveal-on-scroll">Platforma automatizata care conecteaza expeditorii cu transportatorii in secunde. Inscrie-te pentru acces prioritar.</p>
+                    <ul class="hero-benefits delay-300 reveal-on-scroll">
+                        <li><i aria-hidden="true">✓</i> Notificare lansare</li>
+                        <li><i aria-hidden="true">✓</i> Onboarding dedicat</li>
+                        <li><i aria-hidden="true">✓</i> 0% comision 3 luni</li>
+                    </ul>
+                </div>
+                
+                <div class="hero-form-wrapper reveal-on-scroll delay-200">
+                    <form class="lead-form" id="lead-form">
+                        <h3>Lista prioritara</h3>
+                        <div class="input-group">
+                            <label for="full-name">Nume complet</label>
+                            <input id="full-name" name="full-name" type="text" placeholder="ex: Ana Popescu" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="company">Numele companiei</label>
+                            <input id="company" name="company" type="text" placeholder="ex: Logistic Pro SRL" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="tu@companie.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="phone">Telefon</label>
+                            <div class="phone-fields">
+                                <select id="phone-prefix" name="phone-prefix" aria-label="Prefix">
+                                    <option value="+40">🇷🇴 +40</option>
+                                    <option value="+49">🇩🇪 +49</option>
+                                    <option value="+33">🇫🇷 +33</option>
+                                    <option value="+44">🇬🇧 +44</option>
+                                </select>
+                                <input id="phone" name="phone" type="tel" placeholder="723 000 000">
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="role">Sunt...</label>
+                            <select id="role" name="role">
+                                <option value="Shipper">Expeditor / Detinator de marfa</option>
+                                <option value="Carrier">Transportator / Companie de transport</option>
+                                <option value="Other">Alt rol</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn primary">Vreau acces la lansare</button>
+                        <p class="form-status" id="lead-status" style="text-align:center; margin:0; font-size:0.9rem; min-height:1.5em;"></p>
+                    </form>
+                    <div class="subscribe-perks">
+                        <div class="perk-item">
+                            <span>500+</span>
+                            <p>Companii inscrise</p>
+                        </div>
+                        <div class="perk-item">
+                            <span>24/7</span>
+                            <p>Suport dedicat</p>
+                        </div>
+                        <div class="perk-item">
+                            <span>100%</span>
+                            <p>Transparenta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRUSTED BY (Social Proof) -->
+        <section class="content-section reveal-on-scroll" style="margin-bottom: 60px; padding-top:0; text-align: center; opacity: 0.7;">
+            <p style="font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 24px;">Soluție asteptată de liderii din industrie</p>
+            <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; filter: grayscale(100%); opacity: 0.6;">
+                <!-- Placeholder logos using text for now, or SVGs if available. Using generic names. -->
+                <h3 style="margin:0; font-size: 1.5rem; color: #aaa;">LOGISTIC<span style="font-weight:300">CORP</span></h3>
+                <h3 style="margin:0; font-size: 1.5rem; color: #aaa;">TRANS<span style="font-weight:300">PORT</span></h3>
+                <h3 style="margin:0; font-size: 1.5rem; color: #aaa;">EURO<span style="font-weight:300">FREIGHT</span></h3>
+                <h3 style="margin:0; font-size: 1.5rem; color: #aaa;">FAST<span style="font-weight:300">CARGO</span></h3>
+            </div>
+        </section>
+
+        <!-- PROBLEM SECTION -->
+        <section class="content-section problem reveal-on-scroll" id="why-cargox">
+            <div class="section-header">
+                <h2 class="section-title">Ce aduce CargoX în primul val</h2>
+                <p class="section-subtext">Ne concentrăm pe beneficiile directe pentru operațiunile tale, astfel încât fiecare cursă să însemne timp câștigat și costuri optimizate.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="card reveal-on-scroll delay-100">
+                    <div class="icon-box">⚡</div>
+                    <h3>Potriviri automate</h3>
+                    <p>Algoritmul SmartMatch™ îți trimite încărcături și camioane compatibile imediat, fără efort manual.</p>
+                </div>
+                <div class="card reveal-on-scroll delay-200">
+                    <div class="icon-box">📈</div>
+                    <h3>Flote optimizate</h3>
+                    <p>Propunem trasee care elimină cursele goale și mențin camioanele facturabile cap-coadă.</p>
+                </div>
+                <div class="card reveal-on-scroll delay-300">
+                    <div class="icon-box">🛡️</div>
+                    <h3>Control total</h3>
+                    <p>Urmărești livrările în timp real, vezi KPI-urile critice și colaborezi cu echipele fără schimb de mailuri.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section class="content-section reveal-on-scroll" id="how-it-works">
+            <div class="section-header">
+                <h2 class="section-title">Viitorul este automatizat</h2>
+                <p class="section-subtext">SmartMatch™ analizeaza mii de variabile in cateva secunde pentru potrivirea perfecta.</p>
+            </div>
+            <div class="solution-steps">
+                <div class="step-card reveal-on-scroll delay-100">
+                    <h3>Publici nevoia</h3>
+                    <p>Expeditorii adauga detaliile marfii, transportatorii isi listeaza capacitatea. Totul este structurat si standardizat.</p>
+                </div>
+                <div class="step-card reveal-on-scroll delay-200">
+                    <h3>SmartMatch™ preia controlul</h3>
+                    <p>Motorul nostru inteligent analizeaza ruta, tipul camionului, pretul, ratingurile si timpii din intreaga retea.</p>
+                </div>
+                <div class="step-card reveal-on-scroll delay-300">
+                    <h3>Acord instant</h3>
+                    <p>Ambele parti primesc confirmari imediate cu potrivirea perfecta. Fara telefoane nesfarsite, fara pauze moarte.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BENEFITS -->
+        <section class="content-section benefits reveal-on-scroll" id="benefits">
+            <div class="section-header">
+                <h2 class="section-title">Eficienta pentru toată lumea</h2>
+            </div>
+            <div class="benefit-grid">
+                <div class="benefit-box reveal-on-scroll delay-100">
+                    <h3>Pentru Expeditori</h3>
+                    <ul class="benefit-list">
+                        <li>Reduci cu 90% timpul de rezervare</li>
+                        <li>Acces la o retea de transportatori verificati</li>
+                        <li>Monitorizare in timp real si transparenta totala</li>
+                    </ul>
+                </div>
+                <div class="benefit-box reveal-on-scroll delay-200">
+                    <h3>Pentru Transportatori</h3>
+                    <ul class="benefit-list">
+                        <li>Elimini kilometrii fara incarcare</li>
+                        <li>Primesti automat incarcaturi perfect potrivite</li>
+                        <li>Plati rapide si garantate la timp</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <a href="#lead-form" class="mobile-sticky-cta btn primary" data-scroll-target="#lead-form">Inscrie-te acum</a>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo" style="color: white;">Cargo<span style="color: var(--blue);">X</span></div>
+                <p>© 2025 CargoX Technologies Inc.</p>
+            </div>
+            <div class="footer-links">
+                <a href="terms.html">Termeni</a>
+                <a href="privacy.html">Confidentialitate</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const scrollLinks = document.querySelectorAll('[data-scroll-target]');
+        const revealItems = document.querySelectorAll('.reveal-on-scroll');
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const sideMenu = document.getElementById('side-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const themeToggle = document.getElementById('theme-toggle');
+        const leadForm = document.getElementById('lead-form');
+        const leadStatus = document.getElementById('lead-status');
+        const mobileCta = document.querySelector('.mobile-sticky-cta');
+        
+        const THEME_KEY = 'cargox-theme';
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        const initialTheme = localStorage.getItem(THEME_KEY) || (prefersDark.matches ? 'dark' : 'light');
+        const header = document.querySelector('.site-header');
+
+        function applyTheme(theme) {
+            const isDark = theme === 'dark';
+            document.body.dataset.theme = theme;
+            if (themeToggle) {
+                themeToggle.setAttribute('aria-pressed', isDark.toString());
+                themeToggle.setAttribute('aria-label', isDark ? 'Comuta pe modul luminos' : 'Comuta pe modul intunecat');
+            }
+        }
+
+        applyTheme(initialTheme);
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const nextTheme = document.body.dataset.theme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem(THEME_KEY, nextTheme);
+                applyTheme(nextTheme);
+            });
+        }
+
+        const handlePrefersChange = (event) => {
+            if (!localStorage.getItem(THEME_KEY)) {
+                applyTheme(event.matches ? 'dark' : 'light');
+            }
+        };
+
+        if (prefersDark.addEventListener) {
+            prefersDark.addEventListener('change', handlePrefersChange);
+        }
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Optional: Unobserve if you only want it to animate once
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+
+        revealItems.forEach(item => revealObserver.observe(item));
+
+        // Observer for mobile CTA
+        if (mobileCta) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        mobileCta.classList.add('is-visible');
+                    } else {
+                        mobileCta.classList.remove('is-visible');
+                    }
+                });
+            }, { rootMargin: '-100px 0px 0px 0px' });
+            
+            const hero = document.querySelector('.hero');
+            if(hero) heroObserver.observe(hero);
+        }
+
+        function smoothScrollTo(selector) {
+            const target = document.querySelector(selector);
+            if (!target) return;
+            const headerHeight = header ? header.offsetHeight : 0;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = Math.max(targetPosition - headerHeight - 16, 0);
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        function setMenuState(isOpen) {
+            if (!sideMenu || !menuToggle || !menuOverlay) return;
+            sideMenu.classList.toggle('open', isOpen);
+            menuOverlay.classList.toggle('open', isOpen);
+            menuToggle.classList.toggle('open', isOpen);
+            menuToggle.setAttribute('aria-pressed', isOpen.toString());
+            sideMenu.setAttribute('aria-hidden', (!isOpen).toString());
+            menuOverlay.setAttribute('aria-hidden', (!isOpen).toString());
+            document.body.classList.toggle('menu-open', isOpen);
+        }
+
+        menuToggle?.addEventListener('click', () => {
+            const nextState = !sideMenu?.classList.contains('open');
+            setMenuState(nextState);
+        });
+
+        menuClose?.addEventListener('click', () => setMenuState(false));
+        menuOverlay?.addEventListener('click', () => setMenuState(false));
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') setMenuState(false);
+        });
+
+        if (sideMenu) {
+            sideMenu.querySelectorAll('[data-scroll-target]').forEach(link => {
+                link.addEventListener('click', () => setMenuState(false));
+            });
+        }
+
+        scrollLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetSelector = link.dataset.scrollTarget;
+                if (targetSelector) smoothScrollTo(targetSelector);
+            });
+        });
+
+        function simulateSubmission(formElement, statusElement) {
+            formElement.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const formData = new FormData(formElement);
+                const entries = [...formData.values()];
+                const hasEmpty = entries.some(value => !String(value).trim());
+                if (hasEmpty) {
+                    statusElement.textContent = 'Te rugam sa completezi toate campurile obligatorii.';
+                    statusElement.style.color = '#d32f2f';
+                    return;
+                }
+                // Add loading state
+                const btn = formElement.querySelector('button[type="submit"]');
+                const originalText = btn.textContent;
+                btn.textContent = 'Se trimite...';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    statusElement.style.color = 'var(--green)';
+                    statusElement.textContent = 'Multumim! Te-am adaugat pe lista de prioritati.';
+                    formElement.reset();
+                    btn.textContent = originalText;
+                    btn.disabled = false;
+                }, 1500);
+            });
+        }
+
+        if(leadForm && leadStatus) {
+             simulateSubmission(leadForm, leadStatus);
+        }
+    </script>
+</body>
+</html>

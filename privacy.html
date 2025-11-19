@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politica de confidențialitate | CargoX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --blue: #2674e9;
+            --dark: #212121;
+            --night: #111317;
+            --light: #f5f5f5;
+            --muted: rgba(33,33,33,0.72);
+            --white: #ffffff;
+            --line: rgba(33,33,33,0.12);
+            --yellow: #ffb300;
+            --green: #2ecc71;
+            --red: #c03221;
+        }
+
+        [data-theme="dark"] {
+            --dark: #f5f5f5;
+            --night: #0f1014;
+            --light: #050505;
+            --muted: rgba(245,245,245,0.78);
+            --white: #1b1d22;
+            --line: rgba(245,245,245,0.2);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        a { color: var(--blue); text-decoration: none; }
+
+        header {
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            transition: background 0.3s ease, border-color 0.3s ease;
+        }
+
+        [data-theme="dark"] header {
+            background: rgba(8,8,8,0.92);
+        }
+
+        .logo { font-weight: 700; letter-spacing: 0.04em; font-size: 1.2rem; color: var(--dark); }
+        .logo span { color: var(--blue); }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .theme-toggle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--dark);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+        }
+        
+        .theme-toggle:hover {
+            transform: translateY(-1px);
+            border-color: var(--blue);
+        }
+
+        .theme-icon { line-height: 1; font-size: 1.1rem; }
+        .theme-icon--dark { display: none; }
+        [data-theme="dark"] .theme-icon--light { display: none; }
+        [data-theme="dark"] .theme-icon--dark { display: inline; }
+
+        .page-wrapper {
+            width: min(900px, 92vw);
+            margin: 48px auto 80px;
+            background: var(--white);
+            border-radius: 32px;
+            padding: clamp(24px, 4vw, 48px);
+            box-shadow: 0 25px 55px rgba(0,0,0,0.05);
+            border: 1px solid var(--line);
+        }
+
+        [data-theme="dark"] .page-wrapper {
+            background: #1a1d24;
+            box-shadow: 0 25px 55px rgba(0,0,0,0.2);
+        }
+
+        h1 { margin-top: 0; font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1.1; color: var(--dark); }
+        h2 { margin-top: 2.5rem; font-size: 1.3rem; color: var(--dark); }
+        p { margin: 0 0 1rem; color: var(--muted); }
+        ul { color: var(--muted); padding-left: 1.2rem; }
+        li { margin-bottom: 0.5rem; }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        @media (max-width: 640px) {
+            header { padding: 16px; }
+            .header-actions { gap: 12px; }
+            .logo { font-size: 1.1rem; }
+            .btn-link span { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo" href="index.html">Cargo<span>X</span></a>
+        <div class="header-actions">
+            <nav>
+                <a class="btn-link" href="terms.html">Termeni</a>
+                <a class="btn-link" href="contact.html" style="margin-left: 12px;">Contact</a>
+            </nav>
+            <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Comuta tema">
+                <span class="theme-icon theme-icon--light">☀︎</span>
+                <span class="theme-icon theme-icon--dark">☾</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <p><a class="btn-link" href="index.html">← Înapoi la landing page</a></p>
+        <h1>Politica de confidențialitate</h1>
+        <p>Ultima actualizare: 18 mai 2025</p>
+
+        <h2>1. Ce date colectăm?</h2>
+        <ul>
+            <li>Date de identificare: nume, companie, rol.</li>
+            <li>Date de contact: email, telefon, țară.</li>
+            <li>Preferințe operaționale: tipuri de curse, volume, rute.</li>
+        </ul>
+
+        <h2>2. Cum folosim datele?</h2>
+        <p>Datele sunt folosite pentru: (i) a trimite actualizări despre lansare, (ii) a planifica accesul în platformă, (iii) a personaliza ofertele comerciale dedicate fondatorilor.</p>
+
+        <h2>3. Temeiul legal</h2>
+        <p>Prelucrăm datele în baza consimțământului tău explicit și pentru interesul legitim de a comunica informații relevante despre serviciile CargoX.</p>
+
+        <h2>4. Stocare și securitate</h2>
+        <p>Datele sunt stocate pe servere din Uniunea Europeană, cu acces limitat la membrii echipei care au nevoie operațională directă. Folosim criptare TLS și audităm periodic accesările.</p>
+
+        <h2>5. Drepturile tale</h2>
+        <p>Poți solicita oricând accesul, rectificarea, ștergerea sau portarea datelor. Trimite-ne un email la <a href="mailto:privacy@cargox.app">privacy@cargox.app</a> și răspundem în maximum 30 de zile.</p>
+
+        <h2>6. Încetarea comunicării</h2>
+        <p>Fiecare email include un link de dezabonare. De asemenea, ne poți scrie direct pentru a fi eliminat din baza de date.</p>
+    </main>
+
+    <footer>
+        <p>© CargoX 2025 • <a href="terms.html">Termeni</a> • <a href="contact.html">Contact</a></p>
+    </footer>
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const THEME_KEY = 'cargox-theme';
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        function applyTheme(theme) {
+            const isDark = theme === 'dark';
+            document.body.dataset.theme = theme;
+            if (themeToggle) {
+                themeToggle.setAttribute('aria-pressed', isDark.toString());
+            }
+        }
+
+        const savedTheme = localStorage.getItem(THEME_KEY);
+        if (savedTheme) {
+            applyTheme(savedTheme);
+        } else {
+            applyTheme(prefersDark.matches ? 'dark' : 'light');
+        }
+
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.body.dataset.theme;
+                const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                localStorage.setItem(THEME_KEY, nextTheme);
+                applyTheme(nextTheme);
+            });
+        }
+    </script>
+</body>
+</html>
+
