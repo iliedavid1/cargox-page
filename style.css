@@ -851,13 +851,16 @@ footer {
     border-radius: 999px;
 }
 
+.mobile-sticky-cta.btn.primary:hover,
+.mobile-sticky-cta.btn.primary:focus,
+.mobile-sticky-cta.btn.primary:focus-visible,
+.mobile-sticky-cta.btn.primary:active {
+    transform: translateX(-50%);
+}
+
 @media (max-width: 640px) {
     .mobile-sticky-cta {
         display: inline-flex;
-    }
-    .mobile-sticky-cta.is-visible {
-        opacity: 1;
-        transform: translateX(-50%);
     }
 }
 
