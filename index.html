@@ -62,7 +62,7 @@
                 </div>
                 
                 <div class="hero-form-wrapper reveal-on-scroll delay-200">
-                    <form class="lead-form" id="lead-form">
+                    <form class="lead-form" id="lead-form" method="post">
                         <h3>Obține beneficiile de fondator</h3>
                         <div class="input-group">
                             <label for="company">Numele companiei</label>
@@ -218,6 +218,7 @@
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
         const initialTheme = localStorage.getItem(THEME_KEY) || (prefersDark.matches ? 'dark' : 'light');
         const header = document.querySelector('.site-header');
+        const SHEETDB_ENDPOINT = 'https://sheetdb.io/api/v1/n5v5ji1jvb401'; // TODO: replace with your SheetDB API URL
 
         function applyTheme(theme) {
             const isDark = theme === 'dark';
@@ -327,7 +328,7 @@
         });
 
         function simulateSubmission(formElement, statusElement) {
-            formElement.addEventListener('submit', (event) => {
+            formElement.addEventListener('submit', async (event) => {
                 event.preventDefault();
                 const formData = new FormData(formElement);
                 // Get all entries except phone fields (phone and phone-prefix are optional)
@@ -341,19 +342,50 @@
                     statusElement.style.color = '#d32f2f';
                     return;
                 }
+                // Prepare data for SheetDB (column names must match the Google Sheet header)
+                const phonePrefix = (formData.get('phone-prefix') || '').trim();
+                const phoneNumber = (formData.get('phone') || '').trim();
+                const payload = {
+                    data: [{
+                        Company: (formData.get('company') || '').trim(),
+                        Email: (formData.get('email') || '').trim(),
+                        Phone: [phonePrefix, phoneNumber].filter(Boolean).join(' ').trim(),
+                        Role: formData.get('role'),
+                        SubmittedAt: new Date().toISOString()
+                    }]
+                };
+
                 // Add loading state
                 const btn = formElement.querySelector('button[type="submit"]');
                 const originalText = btn.textContent;
                 btn.textContent = 'Se trimite...';
                 btn.disabled = true;
+                statusElement.style.color = 'var(--muted)';
+                statusElement.textContent = 'Trimitem datele către Google Sheets...';
 
-                setTimeout(() => {
+                try {
+                    const response = await fetch(SHEETDB_ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    const result = await response.json();
+
+                    if (!response.ok || !(result?.created >= 1)) {
+                        throw new Error('SheetDB submission failed');
+                    }
+
                     statusElement.style.color = 'var(--green)';
                     statusElement.textContent = 'Mulțumim! Te-am adăugat pe lista de priorități.';
                     formElement.reset();
+                } catch (error) {
+                    console.error(error);
+                    statusElement.style.color = '#d32f2f';
+                    statusElement.textContent = 'Ups! Nu am reușit să salvăm datele. Încearcă din nou.';
+                } finally {
                     btn.textContent = originalText;
                     btn.disabled = false;
-                }, 1500);
+                }
             });
         }
 
