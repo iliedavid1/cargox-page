@@ -514,31 +514,50 @@ label {
     margin-left: 4px;
 }
 
-input, select {
+input, select, textarea {
     width: 100%;
     padding: 14px 16px;
     border-radius: 12px;
-    border: 2px solid transparent;
-    background: var(--light);
+    border: 1px solid var(--line);
+    background: var(--white);
     font-size: 1rem;
     transition: all 0.2s ease;
     color: var(--dark);
+    box-shadow: 0 2px 6px rgba(15,19,23,0.05);
 }
 
-[data-theme="dark"] input, [data-theme="dark"] select {
-    background: rgba(0,0,0,0.2);
-    border-color: rgba(255,255,255,0.1);
+[data-theme="dark"] input, 
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.12);
+    color: #fff;
 }
 
-input:focus, select:focus {
+input::placeholder,
+textarea::placeholder {
+    color: rgba(33,33,33,0.6);
+}
+
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+input:focus, 
+select:focus,
+textarea:focus {
     background: var(--white);
     border-color: var(--blue);
     outline: none;
     box-shadow: 0 0 0 4px rgba(38,116,233,0.1);
 }
 
-[data-theme="dark"] input:focus {
-    background: #000;
+[data-theme="dark"] input:focus,
+[data-theme="dark"] select:focus,
+[data-theme="dark"] textarea:focus {
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 0 0 4px rgba(38,116,233,0.2);
 }
 
 .phone-fields {
@@ -849,6 +868,152 @@ footer {
     padding: 12px 32px;
     font-size: 1rem;
     border-radius: 999px;
+}
+
+/* SECONDARY / STATIC PAGES */
+.secondary-page {
+    width: min(960px, 92vw);
+    margin: 120px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.page-hero,
+.page-section {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 32px;
+    padding: clamp(32px, 6vw, 64px);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .page-hero,
+[data-theme="dark"] .page-section {
+    background: #15171c;
+    border-color: rgba(255,255,255,0.08);
+}
+
+.page-hero .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: rgba(38,116,233,0.1);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+}
+
+.page-hero h1 {
+    margin: 0 0 16px;
+    font-size: clamp(2.4rem, 5vw, 3.4rem);
+    line-height: 1.15;
+}
+
+.page-hero p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin: 0;
+    max-width: 640px;
+}
+
+.page-hero-actions {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    color: var(--blue);
+}
+
+.page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.page-card {
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 24px 28px;
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+[data-theme="dark"] .page-card {
+    background: rgba(21,23,28,0.95);
+    border-color: rgba(255,255,255,0.06);
+}
+
+.page-card strong {
+    font-size: 1rem;
+    color: var(--dark);
+}
+
+[data-theme="dark"] .page-card strong {
+    color: #fff;
+}
+
+.page-card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.page-card a {
+    color: var(--blue);
+    font-weight: 600;
+}
+
+.page-section h2 {
+    margin-top: 2.5rem;
+    font-size: 1.4rem;
+}
+
+.page-section h2:first-of-type {
+    margin-top: 0;
+}
+
+.page-section p, 
+.page-section ul {
+    color: var(--muted);
+}
+
+.page-section ul {
+    padding-left: 1.2rem;
+}
+
+.page-section li {
+    margin-bottom: 0.5rem;
+}
+
+.page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+@media (max-width: 640px) {
+    .secondary-page {
+        margin-top: 96px;
+    }
+    .page-hero,
+    .page-section {
+        padding: 24px;
+    }
 }
 
 .mobile-sticky-cta.btn.primary:hover,
