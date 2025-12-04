@@ -565,7 +565,15 @@ textarea:focus {
     gap: 12px;
 }
 
-.phone-fields select { flex: 0 0 100px; }
+.phone-fields select {
+    flex: 0 0 130px; /* Mai mult spațiu pentru a afișa complet prefixul (ex: RO +40) */
+}
+
+/* Select options pe tema întunecată - să fie vizibile în dropdown */
+[data-theme="dark"] select option {
+    background-color: #1b1d22;
+    color: #ffffff;
+}
 
 .lead-form .btn.primary {
     width: 100%;
