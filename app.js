@@ -16,7 +16,7 @@ const header = document.querySelector('.site-header');
 const THEME_KEY = 'cargox-theme';
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 const initialTheme = localStorage.getItem(THEME_KEY) || (prefersDark.matches ? 'dark' : 'light');
-const SHEETDB_ENDPOINT = 'https://sheetdb.io/api/v1/n5v5ji1jvb401';
+const SHEETDB_ENDPOINT = 'https://sheetdb.io/api/v1/4e275366nz4kw';
 
 function applyTheme(theme) {
     const isDark = theme === 'dark';
@@ -134,7 +134,7 @@ function simulateSubmission(formElement, statusElement) {
     formElement.addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(formElement);
-        const requiredFields = ['company', 'email', 'role'];
+        const requiredFields = ['fullname', 'company', 'email', 'phone', 'role'];
         const hasEmpty = requiredFields.some(fieldName => {
             const value = formData.get(fieldName);
             return !value || !String(value).trim();
@@ -144,13 +144,15 @@ function simulateSubmission(formElement, statusElement) {
             statusElement.style.color = '#d32f2f';
             return;
         }
-        const phonePrefix = (formData.get('phone-prefix') || '').trim();
-        const phoneNumber = (formData.get('phone') || '').trim();
+        const phonePrefix = (formData.get('phone-prefix') || '').trim().replace(/^\+/, '');
+        const phoneNumber = (formData.get('phone') || '').trim().replace(/\s/g, '');
+        const phoneFull = phonePrefix + phoneNumber;
         const payload = {
             data: [{
+                Name: (formData.get('fullname') || '').trim(),
                 Company: (formData.get('company') || '').trim(),
                 Email: (formData.get('email') || '').trim(),
-                Phone: [phonePrefix, phoneNumber].filter(Boolean).join(' ').trim(),
+                Phone: phoneFull,
                 Role: formData.get('role'),
                 SubmittedAt: new Date().toISOString()
             }]

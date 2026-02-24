@@ -102,6 +102,85 @@ section[id] {
     letter-spacing: -0.5px;
     position: relative;
     z-index: 2;
+    display: inline-block;
+    line-height: 1;
+}
+
+/* Keep logo link in header/menu from growing – image inside stays small */
+.site-header .logo,
+.side-menu-header .logo {
+    max-width: 90px;
+}
+
+/* Side menu logo: larger than navbar, and full hover area (padding counts as hit area) */
+.side-menu-header .logo {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    min-height: 72px;
+    box-sizing: border-box;
+    max-width: 140px;
+}
+
+/* Logo image in header and side menu – both themes stacked in same place.
+   Navbar: unchanged (48px). Menu: larger (56px) and proper hit area. */
+.site-header .logo,
+.side-menu .logo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+.site-header .logo {
+    height: 48px;
+    width: 72px;
+}
+.side-menu .logo {
+    height: auto;
+    min-height: 56px;
+}
+.side-menu-header .logo {
+    height: auto;
+    min-height: 72px;
+}
+/* Navbar logo size – do not change */
+.site-header .logo img.logo-img {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block !important;
+    height: 48px !important;
+    max-height: 48px !important;
+    width: auto !important;
+    max-width: 120px !important;
+    object-fit: contain;
+}
+/* Side menu logo: bigger, and positioned inside padded area so hover covers full block */
+.side-menu .logo img.logo-img {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block !important;
+    height: 56px !important;
+    max-height: 56px !important;
+    width: auto !important;
+    max-width: 130px !important;
+    object-fit: contain;
+}
+
+/* Light theme: show black logo, hide white. Dark theme: show white (X_alb), hide black. Same spot, just swap visibility. */
+.logo-img--dark {
+    opacity: 0;
+    pointer-events: none;
+}
+[data-theme="dark"] .logo-img--light {
+    opacity: 0;
+    pointer-events: none;
+}
+[data-theme="dark"] .logo-img--dark {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .logo span {
@@ -297,6 +376,15 @@ section[id] {
 
 [data-theme="dark"] .side-menu a:hover {
     background: rgba(255,255,255,0.05);
+}
+
+/* Logo in menu: no hover effect (no background/color change) */
+.side-menu-header .logo:hover {
+    background: transparent;
+    color: inherit;
+}
+[data-theme="dark"] .side-menu-header .logo:hover {
+    background: transparent;
 }
 
 .side-menu-footer {
@@ -631,6 +719,32 @@ textarea:focus {
     line-height: 1.6;
 }
 
+/* VIDEO SECTION – embed YouTube responsive 16:9 */
+.video-section {
+    margin-bottom: 80px;
+}
+.video-wrapper {
+    position: relative;
+    width: min(900px, 92vw);
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+}
+.video-wrapper::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%; /* 16:9 */
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
 /* CARDS */
 .problem-grid {
     display: grid;
@@ -830,7 +944,17 @@ footer {
     gap: 40px;
 }
 
-.footer-brand .logo { color: white; font-size: 1.5rem; }
+.footer-brand .logo { font-size: 1.5rem; }
+.footer-brand .logo--footer { max-width: none; }
+/* Footer logo: always X_alb.png, larger than before */
+.logo-img--footer {
+    display: block !important;
+    height: 2.75rem;
+    max-height: 2.75rem;
+    max-width: 120px;
+    width: auto;
+    object-fit: contain;
+}
 .footer-brand p { margin-top: 12px; font-size: 0.9rem; }
 
 .footer-links {
