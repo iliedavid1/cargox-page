@@ -424,7 +424,7 @@ section[id] {
 /* HERO SECTION */
 .hero {
     width: 100%;
-    padding: 120px 0 100px;
+    padding: 40px 0 100px;
     background: var(--gradient-hero);
     color: #ffffff;
     position: relative;
@@ -469,8 +469,8 @@ section[id] {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.1fr 0.9fr;
-    gap: 64px;
-    align-items: center;
+    gap: 48px;
+    align-items: start;
     position: relative;
     z-index: 1;
 }
@@ -558,7 +558,8 @@ section[id] {
 .hero-form-wrapper {
     width: 100%;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 0;
+    margin-left: auto;
     perspective: 1000px;
 }
 
@@ -655,6 +656,166 @@ textarea:focus {
 
 .phone-fields select {
     flex: 0 0 130px; /* Mai mult spațiu pentru a afișa complet prefixul (ex: RO +40) */
+}
+
+/* Etichetă câmp fără control asociat (ex. grup radio) */
+.field-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    margin-left: 4px;
+    line-height: 1.45;
+}
+
+.field-label--multiline {
+    margin-left: 0;
+    margin-bottom: 2px;
+}
+
+.input-group--whatsapp {
+    gap: 10px;
+}
+
+/* Da / Nu — chip-uri pentru comunitatea WhatsApp */
+.choice-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 5px;
+    border-radius: 14px;
+    background: rgba(15, 19, 23, 0.04);
+    border: 1px solid var(--line);
+}
+
+[data-theme="dark"] .choice-group {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.choice-chip {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 56px;
+    padding: 8px 8px;
+    border-radius: 10px;
+    border: 1.5px solid transparent;
+    background: var(--white);
+    color: var(--muted);
+    cursor: pointer;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+    box-shadow: 0 1px 4px rgba(15, 19, 23, 0.06);
+}
+
+[data-theme="dark"] .choice-chip {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.choice-chip input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.choice-chip__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(15, 19, 23, 0.06);
+    color: var(--muted);
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.choice-chip__icon svg {
+    width: 14px;
+    height: 14px;
+}
+
+[data-theme="dark"] .choice-chip__icon {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.choice-chip__label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--dark);
+}
+
+[data-theme="dark"] .choice-chip__label {
+    color: #fff;
+}
+
+.choice-chip:hover {
+    border-color: rgba(38, 116, 233, 0.35);
+}
+
+.choice-chip:active {
+    transform: scale(0.98);
+}
+
+.choice-chip--yes:has(input:checked) {
+    border-color: #25d366;
+    background: linear-gradient(180deg, rgba(37, 211, 102, 0.14) 0%, rgba(37, 211, 102, 0.06) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.18);
+    color: #128c47;
+}
+
+.choice-chip--yes:has(input:checked) .choice-chip__icon {
+    background: #25d366;
+    color: #fff;
+}
+
+.choice-chip--yes:has(input:checked) .choice-chip__label {
+    color: #128c47;
+}
+
+[data-theme="dark"] .choice-chip--yes:has(input:checked) {
+    background: linear-gradient(180deg, rgba(37, 211, 102, 0.22) 0%, rgba(37, 211, 102, 0.08) 100%);
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.25);
+}
+
+[data-theme="dark"] .choice-chip--yes:has(input:checked) .choice-chip__label {
+    color: #6ee7a0;
+}
+
+.choice-chip--no:has(input:checked) {
+    border-color: #e53935;
+    background: linear-gradient(180deg, rgba(229, 57, 53, 0.14) 0%, rgba(229, 57, 53, 0.06) 100%);
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.18);
+    color: #b71c1c;
+}
+
+.choice-chip--no:has(input:checked) .choice-chip__icon {
+    background: #e53935;
+    color: #fff;
+}
+
+.choice-chip--no:has(input:checked) .choice-chip__label {
+    color: #b71c1c;
+}
+
+[data-theme="dark"] .choice-chip--no:has(input:checked) {
+    background: linear-gradient(180deg, rgba(229, 57, 53, 0.22) 0%, rgba(229, 57, 53, 0.08) 100%);
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.25);
+}
+
+[data-theme="dark"] .choice-chip--no:has(input:checked) .choice-chip__label {
+    color: #ff8a80;
+}
+
+.choice-chip:has(input:focus-visible) {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
 }
 
 /* Select options pe tema întunecată - să fie vizibile în dropdown */
@@ -973,11 +1134,21 @@ footer {
 
 /* MOBILE RESPONSIVE */
 @media (max-width: 960px) {
+    .hero {
+        padding-top: 32px;
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 48px;
+        gap: 40px;
     }
+
+    .hero-form-wrapper {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .hero-copy { align-items: center; }
     .hero-badge { margin: 0 auto; }
     .hero-benefits { justify-content: center; }

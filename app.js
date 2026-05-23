@@ -18,6 +18,36 @@ const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
 const initialTheme = localStorage.getItem(THEME_KEY) || (prefersDark.matches ? 'dark' : 'light');
 const SHEETDB_ENDPOINT = 'https://sheetdb.io/api/v1/4e275366nz4kw';
 
+// Valorile afișate în dropdown — trimise în coloana Role din Google Sheets.
+const ROLE_LABELS = {
+    Shipper: 'Expeditor / Deținător de marfă',
+    Carrier: 'Transportator / Companie de transport',
+    Forwarding: 'Casa de expediții'
+};
+
+function getSelectedRadioValue(formElement, groupName) {
+    const selected = formElement.querySelector(`input[type="radio"][name="${groupName}"]:checked`);
+    return selected ? selected.value.trim() : '';
+}
+
+function getRoleForSheet(formElement) {
+    const roleSelect = formElement.querySelector('#role');
+    if (!roleSelect) {
+        return '';
+    }
+
+    const selectedValue = roleSelect.value;
+    return ROLE_LABELS[selectedValue] || roleSelect.options[roleSelect.selectedIndex]?.text?.trim() || selectedValue;
+}
+
+function buildSheetDbFormData(row) {
+    const body = new FormData();
+    Object.entries(row).forEach(([column, value]) => {
+        body.append(`data[${column}]`, value ?? '');
+    });
+    return body;
+}
+
 function applyTheme(theme) {
     const isDark = theme === 'dark';
     if (body) {
@@ -134,12 +164,13 @@ function simulateSubmission(formElement, statusElement) {
     formElement.addEventListener('submit', async (event) => {
         event.preventDefault();
         const formData = new FormData(formElement);
+        const whatsappAnswer = getSelectedRadioValue(formElement, 'whatsapp');
         const requiredFields = ['fullname', 'company', 'email', 'phone', 'role'];
         const hasEmpty = requiredFields.some(fieldName => {
             const value = formData.get(fieldName);
             return !value || !String(value).trim();
         });
-        if (hasEmpty) {
+        if (hasEmpty || !whatsappAnswer) {
             statusElement.textContent = 'Te rugăm să completezi toate câmpurile obligatorii.';
             statusElement.style.color = '#d32f2f';
             return;
@@ -147,16 +178,16 @@ function simulateSubmission(formElement, statusElement) {
         const phonePrefix = (formData.get('phone-prefix') || '').trim().replace(/^\+/, '');
         const phoneNumber = (formData.get('phone') || '').trim().replace(/\s/g, '');
         const phoneFull = phonePrefix + phoneNumber;
-        const payload = {
-            data: [{
-                Name: (formData.get('fullname') || '').trim(),
-                Company: (formData.get('company') || '').trim(),
-                Email: (formData.get('email') || '').trim(),
-                Phone: phoneFull,
-                Role: formData.get('role'),
-                SubmittedAt: new Date().toISOString()
-            }]
+        const sheetRow = {
+            Name: (formData.get('fullname') || '').trim(),
+            Company: (formData.get('company') || '').trim(),
+            Email: (formData.get('email') || '').trim(),
+            Phone: phoneFull,
+            WhatsApp: whatsappAnswer,
+            Role: getRoleForSheet(formElement),
+            SubmittedAt: new Date().toISOString()
         };
+        const payload = buildSheetDbFormData(sheetRow);
 
         const btn = formElement.querySelector('button[type="submit"]');
         const originalText = btn.textContent;
@@ -168,8 +199,7 @@ function simulateSubmission(formElement, statusElement) {
         try {
             const response = await fetch(SHEETDB_ENDPOINT, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
+                body: payload
             });
             const result = await response.json();
 
